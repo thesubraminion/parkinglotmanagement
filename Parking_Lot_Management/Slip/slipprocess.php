@@ -1,0 +1,9 @@
+<?php
+	session_start();	
+	if($_SESSION['flag']=="1")
+	{
+	header("location:http://localhost/Parking_Lot_Management/Leave/leaveui.php");
+	}
+	else
+	header("location:http://localhost/Parking_Lot_Management/trial2.php");	
+		 ?>
