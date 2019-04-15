@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function abc(){
+	var sth={};
+
+	var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+	var origin2 = 'Greenwich, England';
+	var destinationA = 'Stockholm, Sweden';
+	var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+	var service = new google.maps.DistanceMatrixService();
+	service.getDistanceMatrix(
+  {
+    origins: [origin1, origin2],
+    destinations: [destinationA, destinationB],
+    travelMode: 'DRIVING',
+    transitOptions: TransitOptions,
+    drivingOptions: DrivingOptions,
+    unitSystem: UnitSystem,
+    avoidHighways: Boolean,
+    avoidTolls: Boolean,
+  }, 
+function callback(response, status) {
+  if (status == 'OK') {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+
+    for (var i = 0; i < origins.length; i++) {
+      var results = response.rows[i].elements;
+      for (var j = 0; j < results.length; j++) {
+        var element = results[j];
+        var distance = element.distance.text;
+        sth=distance;
+        var duration = element.duration.text;
+        var from = origins[i];
+        var to = destinations[j];
+      }
+    }
+  }
+
+  return duration;
+});
+
+}
+ 
+window.onload = abc;
+
+
+</script>
+
+
+<h2>My First Web Page</h2>
+<p>My First Paragraph.</p>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = sth;
+</script>
+
+
+
+
+</body>
+</html> 
